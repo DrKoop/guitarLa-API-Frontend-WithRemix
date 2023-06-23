@@ -5,3 +5,6 @@ Index
 
 Navigation
 ![remix2](https://github.com/DrKoop/guitarLa-API-Remix/assets/95058605/c8bdbc8d-a01f-4169-a00a-592c12c6384d)
+
+Blog Section
+![remix3](https://github.com/DrKoop/guitarLa-API-Remix/assets/95058605/6201a73f-c6af-4401-a4fd-173b44456f85)
