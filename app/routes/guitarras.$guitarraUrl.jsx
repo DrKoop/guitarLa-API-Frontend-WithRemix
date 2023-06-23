@@ -101,21 +101,7 @@ const Guitarra = () => {
   }
 
 
-/*   const clickAgregar = () => {
 
-
-    if( +cantidad === 0 ){
-      return
-    }else{
-
-  
-      setTimeout(() => {
-           <p>test</p>
-  
-      }, 2000);
-    }
-
-  } */
 
   return (
     <main className="contenedor guitarra">
