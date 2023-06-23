@@ -77,6 +77,7 @@ const Guitarra = () => {
         return
       }
 
+
       const guitarraSeleccionada = {
         id : rutaGuitarra.data[0].id,
         imagen : imagen.data.attributes.url,
@@ -85,9 +86,36 @@ const Guitarra = () => {
         cantidad
       }
 
+      let msjSucces = document.querySelector(".contenido")
+      let appendMsjSucces = document.createElement('p');
+      appendMsjSucces.classList.add('alerta_agregar')
+      appendMsjSucces.textContent = 'Agregaste un Producto al Carrito.'
+      msjSucces.appendChild(appendMsjSucces)
+
+      setTimeout(() => {
+        msjSucces.removeChild(appendMsjSucces)
+      }, 1500);
+
+
       agregarAlCarrito(guitarraSeleccionada)
   }
 
+
+/*   const clickAgregar = () => {
+
+
+    if( +cantidad === 0 ){
+      return
+    }else{
+
+  
+      setTimeout(() => {
+           <p>test</p>
+  
+      }, 2000);
+    }
+
+  } */
 
   return (
     <main className="contenedor guitarra">
@@ -110,7 +138,7 @@ const Guitarra = () => {
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-          <input type="submit" value="Agregar al Carrito" />
+          <input type="submit" value="Agregar al Carrito" className="btn_agregar"  /* onClick={ clickAgregar } */ />
         </form>
 
       </div>

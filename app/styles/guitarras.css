@@ -83,3 +83,12 @@
     cursor: pointer;
     background-color: var(--primary);
 }
+
+.alerta_agregar{
+    background-color: var(--primary);
+    padding: 1.5rem;
+    color: var(--white);
+    border-radius: 1rem;
+    text-transform: uppercase;
+    text-align: center;
+}

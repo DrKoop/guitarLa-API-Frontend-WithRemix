@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import {
     Meta,
     Links,
@@ -55,17 +56,55 @@ export function links(){
 
 export default function App(){
 
-    const [ carrito, setCarrito ] = useState([])
+    const carritoLocalStorage = typeof window !== 'undefined' ? JSON.parse( localStorage.getItem('carrito')) ?? [] : null
+
+    const [ carrito, setCarrito ] = useState(carritoLocalStorage)
+
+    useEffect(() => {
+        localStorage.setItem('carrito' , JSON.stringify(carrito))
+    }, [carrito])
+    
 
     const agregarAlCarrito = objetoDataGuitarra => {
-        setCarrito([ ...carrito,objetoDataGuitarra ])
+        if( carrito.some( guitarraState => guitarraState.id === objetoDataGuitarra.id)){
+            //Iterar + identificar el elemento duplicado
+            const carritoActualizado = carrito.map( arregloGuitarra => {
+                //Reescribiendo / Actualizando la Cantidad
+                if(arregloGuitarra.id === objetoDataGuitarra.id){
+                    arregloGuitarra.cantidad = objetoDataGuitarra.cantidad
+                }
+                return arregloGuitarra
+            })
+            setCarrito(carritoActualizado)
+        }else{
+            //Los id son disitintos, es entonces un articulo nuevo
+            setCarrito([...carrito, objetoDataGuitarra])
+        }
+    }
+
+    const actualizarCantidadSelect = guitarra => {
+        const carritoActualizado = carrito.map( guitarraState => {
+            if( guitarraState.id === guitarra.id ){
+                guitarraState.cantidad =  guitarra.cantidad
+            }
+            return guitarraState
+        })
+        setCarrito(carritoActualizado)
+    }
+
+    const eliminarGuitarra = id => {
+        const carritoActualizado = carrito.filter( guitarraState => guitarraState.id !== id)
+        setCarrito(carritoActualizado)
     }
 
     return (
         <Document>
             <Outlet
                 context={{
-                    agregarAlCarrito
+                    agregarAlCarrito,
+                    carrito,
+                    actualizarCantidadSelect,
+                    eliminarGuitarra
                 }}
             />
         </Document>
